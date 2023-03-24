@@ -12,7 +12,7 @@ type UpdateUser = Partial<CreateUser> & Name<'UpdateUser'>;
 type ReadUser = Omit<User, 'password'> & Name<'ReadUser'>;
 
 const users: User[] = [
-  { id: 1, name: 'chris', password: 'zekgjhzekg' },
+  { id: 1, name: 'yo', password: 'zekgjhzekg' },
   { id: 2, name: 'cassi', password: 'zekgjhzekg' }
 ];
 
@@ -28,6 +28,15 @@ export class UserController {
     const user = users.find(user => user.id === id);
     if (!user) throw new HttpError('User not found', 404);
     return user;
+  }
+
+  @http
+    .GET('/user')
+    .name('list user')
+    .description('list all users')
+    .response<ReadUser[]>(200, 'List all User')
+  list() {
+    return users;
   }
 
   @http.POST('/user').response<ReadUser>(200, 'Create a new User')
