@@ -1,0 +1,5 @@
+{
+  "exec": "npx deepkit-type-install && ts-node src/app.ts server:start",
+  "watch": ["src"],
+  "ext": "ts"
+}

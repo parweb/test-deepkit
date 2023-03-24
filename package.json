@@ -1,0 +1,18 @@
+{
+  "name": "test-deepkit",
+  "version": "1.0.0",
+  "main": "src/app.ts",
+  "license": "MIT",
+  "scripts": {
+    "start": "ts-node src/app.ts server:start"
+  },
+  "dependencies": {
+    "@deepkit/framework": "1.0.1-alpha.92",
+    "@deepkit/type": "1.0.1-alpha.92",
+    "deepkit-openapi": "^0.0.6",
+    "ts-node": "10.9.1"
+  },
+  "devDependencies": {
+    "@deepkit/type-compiler": "1.0.1-alpha.89"
+  }
+}
