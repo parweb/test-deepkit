@@ -12,7 +12,7 @@ type UpdateUser = Partial<CreateUser> & Name<'UpdateUser'>;
 type ReadUser = Omit<User, 'password'> & Name<'ReadUser'>;
 
 const users: User[] = [
-  { id: 1, name: 'yo', password: 'zekgjhzekg' },
+  { id: 1, name: 'chris', password: 'zekgjhzekg' },
   { id: 2, name: 'cassi', password: 'zekgjhzekg' }
 ];
 
@@ -24,7 +24,7 @@ export class UserController {
     .description('get one users')
     .response<ReadUser>(200, 'Read a User by its ID')
     .response<Error>(404, 'User not found')
-  read(id: ReadUser['id']) {
+  read(id: User['id']) {
     const user = users.find(user => user.id === id);
     if (!user) throw new HttpError('User not found', 404);
     return user;
@@ -49,9 +49,19 @@ export class UserController {
     .PATCH('/user/:id')
     .response<ReadUser>(200, "Patch a User's attributes")
     .response<Error>(404, 'User not found')
-  patch(id: number, patch: HttpBody<UpdateUser>) {
+  patch(id: User['id'], patch: HttpBody<UpdateUser>) {
     const user = users.find(user => user.id === id);
     if (!user) throw new HttpError('User not found', 404);
     return { ...user, ...patch };
+  }
+
+  @http
+    .DELETE('/user/:id')
+    .response<ReadUser>(200, 'Delete a User')
+    .response<Error>(404, 'User not found')
+  delete(id: User['id']) {
+    const user = users.find(user => user.id === id);
+    if (!user) throw new HttpError('User not found', 404);
+    return users.filter(item => item.id !== user.id);
   }
 }
