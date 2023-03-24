@@ -2,6 +2,7 @@
   "compilerOptions": {
     "outDir": "./dist",
     "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
     "strict": true,
     "esModuleInterop": true,
     "target": "ES2020",
@@ -9,5 +10,5 @@
     "moduleResolution": "node"
   },
   "reflection": true,
-  "files": ["app.ts"]
+  "files": ["src/app.ts"]
 }
